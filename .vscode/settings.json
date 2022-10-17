@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "D:\\Program Files\\Miniconda3\\envs\\torch_gpu\\python.exe",
+    "remote.extensionKind": {
+
+        "pub.name": [
+            "ui"
+        ]
+    },
+    "editor.codeActionsOnSave": null,
+    "jupyter.jupyterServerType": "local"
+}
