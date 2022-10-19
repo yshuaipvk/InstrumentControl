@@ -50,22 +50,23 @@ def OCVD(timeBases=[0.001,0.01,1]):
     for timeBase in timeBases:
         ef.OCVD(scope=SCOPE_1, dg535=DG535, dg_rate=RATE, light_time=LIGHT_TIME, file_desc=file_describe, root_dir=ROOT_DIR,time_base=timeBase,sweeps=3)
  
-def OCVDTrce(timeDelayList,ion=False):
+def OCVDTrce(timeDelayList,trce=True,ion=False):
     for timeDelay in timeDelayList:
         print("Change time delay to "+str(timeDelay))
         file_desc =file_describe+str(timeDelay)
-        ef.OCVD_trce(scope=SCOPE_1,dg535=DG535,dg_rate=RATE,light_time=LIGHT_TIME,time_base=0.00002,time_delay=timeDelay,
+        if trce:
+            ef.OCVD_trce(scope=SCOPE_1,dg535=DG535,dg_rate=RATE,light_time=LIGHT_TIME,time_base=0.00002,time_delay=timeDelay,
                   extract_time=EXTRACT_TIME,file_desc=file_desc,root_dir=ROOT_DIR)
         if ion:
             ef.OCVD_ion(scope=SCOPE_1, dg535=DG535, dg_rate=RATE, light_time=LIGHT_TIME, time_base=0.002,
                     time_delay=timeDelay, extract_time=EXTRACT_TIME, file_desc=file_desc, root_dir=ROOT_DIR)
 
-def OCVBTrce(timeDelayList,ion=False):
+def OCVBTrce(timeDelayList,trce=True,ion=False):
     for timeDelay in timeDelayList:
         print("Change time delay to "+str(timeDelay))
         file_desc =file_describe+str(timeDelay)
-
-        ef.OCVB_trce(scope=SCOPE_1,dg535=DG535,dg_rate=RATE,light_time=timeDelay,time_base=0.00002,
+        if trce:
+            ef.OCVB_trce(scope=SCOPE_1,dg535=DG535,dg_rate=RATE,light_time=timeDelay,time_base=0.00002,
                      extract_time=EXTRACT_TIME,file_desc=file_desc,root_dir=ROOT_DIR)
 
         if ion:
@@ -84,8 +85,8 @@ if __name__ == '__main__':
 
     # OCVB(timeBases=[0.001,0.01,1])
     # OCVD(timeBases=[0.001,0.01,1])
-    # OCVBTrce(timeDelayList=time_delay_list,ion=True)
-    # OCVDTrce(timeDelayList=time_delay_list,ion=True)
+    OCVBTrce(timeDelayList=time_delay_list,trce=True,ion=True)
+    OCVDTrce(timeDelayList=time_delay_list,trce=True,ion=True)
     doubleTest(timeDelayList=time_delay_list)
     
 
